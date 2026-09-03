@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-readonly IMAGE='mcr.microsoft.com/mssql/server:2022-CU26-ubuntu-22.04@sha256:600789eae8eb858322ddbfbd97424f886d55880ce0afdc7e67c13de6df9a6648'
+readonly IMAGE='mcr.microsoft.com/mssql/server:2022-CU26-ubuntu-22.04@sha256:ba4c8329f48fb8f02e1416be6a930ebfd71268caee78aa985f3af4315e457c89'
 readonly CONTAINER="sql-py-join-validation-$$"
 readonly ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 readonly TEMP_DIR="$(mktemp -d)"
