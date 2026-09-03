@@ -5,7 +5,7 @@ readonly IMAGE='mcr.microsoft.com/mssql/server:2022-CU26-ubuntu-22.04@sha256:ba4
 readonly CONTAINER="sql-py-join-validation-$$"
 readonly ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 readonly TEMP_DIR="$(mktemp -d)"
-readonly SA_PASSWORD="$(openssl rand -hex 24)"
+readonly SA_PASSWORD="Aekr!7$(openssl rand -hex 24)"
 readonly SQLCMD='/opt/mssql-tools18/bin/sqlcmd'
 
 cleanup() {
