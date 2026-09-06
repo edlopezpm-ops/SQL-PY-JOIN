@@ -24,3 +24,9 @@ jobs:
 
       - name: Validate against disposable SQL Server
         run: bash tests/validate_sql.sh
+
+      - name: Validate native sqlcmd sidecar transport
+        run: bash tests/test_validate_sql_sidecar.sh
+
+      - name: Validate transport regression cases
+        run: python3 -m unittest discover -s tests -p 'test_validate_sql.py' -v
