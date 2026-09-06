@@ -33,6 +33,16 @@ bash tests/validate_sql.sh
 
 El validator usa un contenedor efímero, comprueba el rollback predeterminado, ejecuta una copia temporal en modo commit dos veces y verifica filas, claves y recarga idempotente. El contenedor y la contraseña aleatoria se eliminan al salir.
 
+El runtime aislado de kommiBo puede ejecutar las mismas comprobaciones sin acceso a Docker. Debe proporcionar `KOMMIBO_SQL_SERVER=sqlserver,1433`, una contraseña efímera en `KOMMIBO_SQL_PASSWORD` y el cliente `/opt/mssql-tools18/bin/sqlcmd`. El comando sigue siendo `bash tests/validate_sql.sh`. Este modo sólo admite ese sidecar desechable: crea `PYDB` y sus datos de prueba; el runtime conserva la responsabilidad de destruir el sidecar. El validator no elimina contenedores externos. No uses una base persistente ni una contraseña personal.
+
+Las pruebas locales del transporte usan comandos simulados y no acreditan ejecución SQL:
+
+```bash
+python3 -m unittest discover -s tests -p 'test_validate_sql.py'
+```
+
+El workflow `Validation` conserva la ejecución SQL real mediante Docker.
+
 ## Alcance futuro
 
 El repositorio podra crecer con ejercicios y componentes relacionados con:
