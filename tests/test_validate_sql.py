@@ -26,7 +26,7 @@ args = [arg.split("=", 1)[0] + "=<redacted>" if arg.startswith(("SQLCMDPASSWORD=
 event = {"kind": kind, "args": args, "stdin_sha256": hashlib.sha256(source).hexdigest(), "password_valid": password_valid}
 with open(os.environ["TRANSPORT_LOG"], "a") as output:
     output.write(json.dumps(event) + "\n")
-if source and os.environ.get("FAIL_SQL") == "1":
+if source and (os.environ.get("FAIL_SQL") == "1" or (os.environ.get("REQUIRE_GO") == "1" and not source.rstrip().endswith(b"GO"))):
     sys.exit(7)
 '''
 
@@ -68,6 +68,7 @@ class SqlTransportTests(unittest.TestCase):
         result, events = self.execute({
             "KOMMIBO_SQL_SERVER": "sqlserver,1433",
             "KOMMIBO_SQL_PASSWORD": FIXTURE_PASSWORD,
+            "REQUIRE_GO": "1",
         }, trace=True)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(len(events), 8)  # readiness + fixture + rollback/check + two commit/check pairs
@@ -77,8 +78,8 @@ class SqlTransportTests(unittest.TestCase):
             self.assertEqual(event["args"][:7], ["-S", "sqlserver,1433", "-U", "sa", "-P", "<redacted>", "-C"])
         source = (ROOT / "SP_CreateTables.sql").read_bytes()
         commit = source.replace(b"declare @EjecutarCommit char(1) = 'N'", b"declare @EjecutarCommit char(1) = 'Y'")
-        self.assertEqual(events[2]["stdin_sha256"], hashlib.sha256(source).hexdigest())
-        self.assertEqual([events[index]["stdin_sha256"] for index in (4, 6)], [hashlib.sha256(commit).hexdigest()] * 2)
+        self.assertEqual(events[2]["stdin_sha256"], hashlib.sha256(source + b"\nGO\n").hexdigest())
+        self.assertEqual([events[index]["stdin_sha256"] for index in (4, 6)], [hashlib.sha256(commit + b"\nGO\n").hexdigest()] * 2)
         self.assertIn("Rollback mode persisted REGISTER_JOIN.", events[3]["args"][-1])
         for index in (5, 7):
             query = events[index]["args"][-1]
@@ -87,7 +88,7 @@ class SqlTransportTests(unittest.TestCase):
         self.assertNotIn(FIXTURE_PASSWORD, self.log.read_text())
 
     def test_default_still_owns_a_pinned_docker_container(self):
-        result, events = self.execute({})
+        result, events = self.execute({"REQUIRE_GO": "1"})
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertTrue(all(event["kind"] == "docker" for event in events))
         self.assertEqual(events[0]["args"][0], "run")
@@ -104,6 +105,16 @@ class SqlTransportTests(unittest.TestCase):
         self.assertEqual(result.returncode, 7)
         self.assertNotIn("validation: PASS", result.stdout)
         self.assertTrue(all(event["kind"] == "sqlcmd" for event in events))
+
+    def test_missing_source_file_propagates_even_if_sqlcmd_accepts_empty_batch(self):
+        (self.root / "SP_CreateTables.sql").unlink()
+        result, events = self.execute({
+            "KOMMIBO_SQL_SERVER": "sqlserver,1433",
+            "KOMMIBO_SQL_PASSWORD": FIXTURE_PASSWORD,
+        })
+        self.assertNotEqual(result.returncode, 0)
+        self.assertNotIn("validation: PASS", result.stdout)
+        self.assertLessEqual(len(events), 3)  # never reach assertions or commit runs
 
     def test_partial_or_nonisolated_sidecar_configuration_fails_before_commands(self):
         for settings in (
