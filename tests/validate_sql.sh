@@ -33,6 +33,12 @@ sql_exec() {
   fi
 }
 
+# Explicitly flush the final batch for both pipe and regular-file sqlcmd stdin.
+# The source file is preserved byte-for-byte; GO is client-side framing only.
+sql_file() {
+  { cat "$1"; printf '\nGO\n'; } | sql_exec -b -V 16
+}
+
 cleanup() {
   if [[ "$MANAGES_CONTAINER" == true ]]; then
     docker rm --force "$CONTAINER" >/dev/null 2>&1 || true
@@ -84,7 +90,7 @@ VALUES
 GO
 SQL
 
-sql_exec -b -V 16 < "$ROOT/SP_CreateTables.sql"
+sql_file "$ROOT/SP_CreateTables.sql"
 
 sql_exec -b -V 16 -d PYDB -Q \
   "IF OBJECT_ID('dbo.REGISTER_JOIN', 'U') IS NOT NULL THROW 51000, 'Rollback mode persisted REGISTER_JOIN.', 1;"
@@ -93,7 +99,7 @@ sed "s/declare @EjecutarCommit char(1) = 'N'/declare @EjecutarCommit char(1) = '
   "$ROOT/SP_CreateTables.sql" > "$TEMP_DIR/SP_CreateTables.commit.sql"
 
 for run in 1 2; do
-  sql_exec -b -V 16 < "$TEMP_DIR/SP_CreateTables.commit.sql"
+  sql_file "$TEMP_DIR/SP_CreateTables.commit.sql"
 
   sql_exec -b -V 16 -d PYDB -Q \
     "IF (SELECT COUNT(*) FROM dbo.REGISTER_JOIN) <> 9 THROW 51001, 'Expected exactly nine join rows.', 1;

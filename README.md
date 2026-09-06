@@ -41,7 +41,7 @@ Las pruebas locales del transporte usan comandos simulados y no acreditan ejecuc
 python3 -m unittest discover -s tests -p 'test_validate_sql.py'
 ```
 
-El workflow `Validation` conserva la ejecución SQL real mediante Docker.
+El workflow `Validation` ejecuta SQL real por ambos transportes: Docker y el cliente nativo del sidecar, conservando el mismo check requerido `validation`. El validator agrega `GO` al flujo enviado para despachar el último batch incluso cuando el archivo original no termina en una nueva línea; no modifica el archivo SQL. La prueba del sidecar también exige que SQL inválido termine con un código distinto de cero.
 
 ## Alcance futuro
 
