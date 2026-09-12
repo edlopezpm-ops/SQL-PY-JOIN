@@ -65,6 +65,8 @@ No existe un archivo de licencia, por lo que este repositorio no concede permiso
 
 Los cambios siguen el flujo de ingeniería AEKR: alcance acotado, validación determinista en infraestructura desechable, revisión mediante pull request y recuperación mediante revert PR. El autor y el revisor son actores técnicos distintos bajo una sola autoridad HOC; el revisor aprueba y fusiona el head exacto validado. Esta separación es un control operativo, no una auditoría independiente.
 
+cambio random para testear kommibo
+
 ---
 
 Built with the **[AI Engineering Knowledge Racking (AEKR)](https://aekr.io)** workflow.
