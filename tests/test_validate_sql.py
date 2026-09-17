@@ -1,4 +1,4 @@
-"""Transport tests only. The Validation workflow supplies real SQL evidence."""
+"""Transport tests only"""
 
 import hashlib
 import json
