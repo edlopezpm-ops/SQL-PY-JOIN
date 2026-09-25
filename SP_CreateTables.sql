@@ -1,7 +1,7 @@
 --**Script to create tables for SQL-PY JOIN project
 
 --define la base a usar
-use PYDB;
+--use PYDB;
 
 --commit switch
 declare @EjecutarCommit char(1) = 'N'; --Cambia a 'Y' cuando esté Ok
