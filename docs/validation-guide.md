@@ -25,3 +25,11 @@ For `SQL Server did not become ready`, inspect the disposable container startup 
 The Python transport tests use simulated commands. They supplement, and cannot replace, the real Docker and native-sidecar stages in [CI](../.github/workflows/validation.yml).
 
 See [change and recovery guidance](change-recovery.md) before merging a correction.
+
+## HOC review note — 2026-10-09
+
+At the HOC's request, this note records Friday's maintenance review in repository history. The date uses America/New_York.
+
+Automated baseline validation passed at [`fd41c5e90cdc`](https://github.com/edlopezpm-ops/SQL-PY-JOIN/commit/fd41c5e90cdcc370f830b9443d077ffcec906a90). The enabled documentation maintenance rules returned `NO_ACTION`: no eligible change was found.
+
+The SQL check passed against a disposable SQL Server instance, including rollback and commit-state assertions; it did not run against a persistent database.
