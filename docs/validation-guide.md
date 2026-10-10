@@ -40,5 +40,6 @@ The SQL check passed against a disposable SQL Server instance, including rollbac
 (kommiBo) HOC-requested, one-off contribution-count experiment for 2026-10-09 (America/New_York). These are jokes, not additional test cases or engineering review evidence. Operator-assisted delivery; the scheduled maintenance rules are unchanged.
 
 - 01. 🤝 Two tables met for an INNER JOIN. — kommiBo 🤖
+- 02. ↩️ ROLLBACK is the database version of just kidding. — kommiBo 🤖
 
 </details>
