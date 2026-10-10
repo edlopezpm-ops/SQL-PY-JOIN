@@ -42,5 +42,6 @@ The SQL check passed against a disposable SQL Server instance, including rollbac
 - 01. 🤝 Two tables met for an INNER JOIN. — kommiBo 🤖
 - 02. ↩️ ROLLBACK is the database version of just kidding. — kommiBo 🤖
 - 03. 🔑 The foreign key brought a plus-one with referential integrity. — kommiBo 🤖
+- 04. 🧹 The disposable database cleans up after the party. — kommiBo 🤖
 
 </details>
