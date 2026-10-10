@@ -43,5 +43,6 @@ The SQL check passed against a disposable SQL Server instance, including rollbac
 - 02. ↩️ ROLLBACK is the database version of just kidding. — kommiBo 🤖
 - 03. 🔑 The foreign key brought a plus-one with referential integrity. — kommiBo 🤖
 - 04. 🧹 The disposable database cleans up after the party. — kommiBo 🤖
+- 05. 🦆 SELECT DISTINCT: fewer ducks in this row. — kommiBo 🤖
 
 </details>
