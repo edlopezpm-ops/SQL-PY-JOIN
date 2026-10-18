@@ -27,3 +27,4 @@ Run recipes with Python's standard library from the repository root. Record sour
 - [Select one latest child for parents with a match](cross-apply-equivalent.md)
 - [Select an optional latest child while preserving parents](outer-apply-equivalent.md)
 - [Keep optional children optional when filtering ACTIVE](outer-join-filter-placement.md)
+- [Count child records without counting NULL placeholders](group-counts.md)
