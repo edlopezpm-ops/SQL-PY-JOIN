@@ -30,3 +30,4 @@ Run recipes with Python's standard library from the repository root. Record sour
 - [Count child records without counting NULL placeholders](group-counts.md)
 - [Reject an orphan child and preserve existing rows](foreign-key-negative-case.md)
 - [Observe deletion inside a transaction and restore it with rollback](transaction-rollback.md)
+- [Reload a glossary transactionally and compare logical rows](transactional-reload.md)
