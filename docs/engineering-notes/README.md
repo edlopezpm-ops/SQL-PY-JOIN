@@ -34,3 +34,4 @@ Run recipes with Python's standard library from the repository root. Record sour
 - [Select a calendar interval with an exclusive upper bound](half-open-date-range.md)
 - [Bind query values instead of interpolating text](parameterized-values.md)
 - [Check that parent-name resolution returns exactly one row](parent-resolution-cardinality.md)
+- [Use a unique tie-breaker for latest-row selection](deterministic-order.md)
