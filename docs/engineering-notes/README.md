@@ -25,3 +25,4 @@ Run recipes with Python's standard library from the repository root. Record sour
 - [Predict Cartesian-product size before CROSS JOIN](cross-join-cardinality.md)
 - [Compare glossary rows without mirrored self pairs](self-join-pairs.md)
 - [Select one latest child for parents with a match](cross-apply-equivalent.md)
+- [Select an optional latest child while preserving parents](outer-apply-equivalent.md)
