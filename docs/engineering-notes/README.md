@@ -24,3 +24,4 @@ Run recipes with Python's standard library from the repository root. Record sour
 - [Preserve both filtered projections with a full outer pattern](full-outer-projection.md)
 - [Predict Cartesian-product size before CROSS JOIN](cross-join-cardinality.md)
 - [Compare glossary rows without mirrored self pairs](self-join-pairs.md)
+- [Select one latest child for parents with a match](cross-apply-equivalent.md)
