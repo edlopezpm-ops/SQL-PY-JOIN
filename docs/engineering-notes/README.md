@@ -23,3 +23,4 @@ Run recipes with Python's standard library from the repository root. Record sour
 - [Explain RIGHT JOIN by reversing a LEFT JOIN](right-join-by-reversal.md)
 - [Preserve both filtered projections with a full outer pattern](full-outer-projection.md)
 - [Predict Cartesian-product size before CROSS JOIN](cross-join-cardinality.md)
+- [Compare glossary rows without mirrored self pairs](self-join-pairs.md)
