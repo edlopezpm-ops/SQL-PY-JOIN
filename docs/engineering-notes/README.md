@@ -19,3 +19,4 @@ Run recipes with Python's standard library from the repository root. Record sour
 ## Recipes
 
 - [Match parent and child records with INNER JOIN](inner-join.md)
+- [Preserve parents with no children using LEFT JOIN](left-join.md)
