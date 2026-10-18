@@ -65,7 +65,11 @@ No existe un archivo de licencia, por lo que este repositorio no concede permiso
 
 Los cambios siguen el flujo de ingeniería AEKR: alcance acotado, validación determinista en infraestructura desechable, revisión mediante pull request y recuperación mediante revert PR. El autor y el revisor son actores técnicos distintos bajo una sola autoridad HOC; el revisor aprueba y fusiona el head exacto validado. Esta separación es un control operativo, no una auditoría independiente.
 
-cambio random para testear kommibo
+
+<!-- (kommiBo) Source-backed documentation navigation. -->
+## Engineering recipes
+
+See the [engineering notes](docs/engineering-notes/README.md) for reproducible examples, source references and validation limits.
 
 ---
 
