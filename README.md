@@ -59,7 +59,7 @@ Este es un proyecto de practica y evolucion tecnica. El codigo se mantendra simp
 
 ## Licencia
 
-No existe un archivo de licencia, por lo que este repositorio no concede permiso general para copiar, modificar, distribuir o reutilizar el trabajo. La profesionalización no agregó ni cambió términos de licencia.
+No se ha seleccionado una licencia general para el proyecto. Los términos de GitHub permiten verlo y hacer fork; una reutilización más amplia requiere el permiso correspondiente. El aviso separado de procedencia AEKR no licencia el script SQL.
 
 ## Gobernanza
 
@@ -70,6 +70,20 @@ Los cambios siguen el flujo de ingeniería AEKR: alcance acotado, validación de
 ## Engineering recipes
 
 See the [engineering notes](docs/engineering-notes/README.md) for reproducible examples, source references and validation limits.
+
+<!-- (kommiBo) Project-specific behavior, privacy and permission boundaries. -->
+## Privacy, use and permissions
+
+El script es material educativo para una instancia desechable de SQL Server.
+El rollback predeterminado no sustituye aislamiento ni autorización sobre la base.
+Los stamps y resultados SQL también son datos: revisa logs y exports antes de publicarlos.
+Las ideas SaaS son alcance futuro; no hay un servicio SaaS implementado aquí.
+
+- [Privacy notice](PRIVACY.md): project processing, hosting and requests.
+- [Use and service boundaries](TERMS.md): intended use and license precedence.
+- [Licensing inventory](docs/licensing.md): project, dependency and AEKR provenance scopes.
+- [Data handling](docs/data-handling.md): local artifacts and publication checks.
+- [Security reporting](SECURITY.md): private reports and support limits.
 
 ---
 
