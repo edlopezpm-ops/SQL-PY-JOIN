@@ -15,7 +15,16 @@ Este repositorio servira como base de aprendizaje incremental para:
 
 El proyecto contiene un script SQL ya ejecutado para crear y poblar una tabla de referencia sobre tipos de joins.
 
-El script es destructivo sólo cuando `@EjecutarCommit` se cambia explícitamente a `Y`: en ese modo crea o vacía `dbo.REGISTER_JOIN` y vuelve a cargar sus filas. El valor versionado permanece en `N`, por lo que la ejecución por defecto termina en rollback.
+<!-- (kommiBo) Rollback prevents persistence; it does not make the script read-only. -->
+El valor versionado de `@EjecutarCommit` es `N`: el flujo normal revierte la transacción.
+Aun en ese modo, el script ejecuta creación o borrado de filas, cambios de constraints e
+inserciones dentro de la transacción antes del rollback. Puede adquirir bloqueos; no es
+una consulta de sólo lectura ni un sandbox para una base persistente.
+
+Si cambias explícitamente el valor a `Y`, el flujo normal confirma esos cambios y deja
+creada o vaciada y recargada `dbo.REGISTER_JOIN`. Usa una instancia desechable autorizada,
+revisa la base y el modo antes de ejecutar, y verifica el estado final además de los mensajes.
+Consulta los [límites de uso](TERMS.md) y la [validación desechable](docs/validation-guide.md).
 
 ## Contrato externo
 
