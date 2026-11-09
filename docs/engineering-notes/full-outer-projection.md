@@ -1,7 +1,7 @@
 <!-- (kommiBo) Source-reviewed SQL learning recipe; synthetic examples only. -->
 # Preserve both filtered projections with a full outer pattern
 
-Compare active parents with all children. A child can be unmatched to that filtered parent projection even while referential integrity is valid. Combine a left join with only the unmatched right side.
+Compare active parents with all children. A child can be unmatched to that filtered parent projection even when referential integrity holds. Combine a left join with only the unmatched right side.
 
 Source: [SP_CreateTables.sql, line 105](../../SP_CreateTables.sql#L105). The source stores a nine-row JOIN glossary and defines a parent/child relation; it does not execute these JOIN exercises.
 
@@ -15,6 +15,6 @@ Expected result: [(9, None), (7, 1), (7, 2), (None, 3)].
 
 Dialect: SQL Server supports FULL OUTER JOIN directly. The runnable SQLite equivalent uses LEFT JOIN plus an anti-matched UNION ALL branch so it does not depend on newer SQLite FULL JOIN support.
 
-Limit: UNION ALL retains multiplicity. The second branch must include only unmatched rows; otherwise matched pairs appear twice.
+Limit: UNION ALL retains multiplicity. The second branch must include only unmatched rows; otherwise matched pairs are duplicated.
 
 Review evidence should name the source SHA, interpreter/SQLite version, input, query, observed rows and unexecuted scope. Use the [source and validation map](README.md) to distinguish these examples from SQL Server tests.
