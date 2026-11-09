@@ -1,7 +1,7 @@
 <!-- (kommiBo) Source-reviewed SQL learning recipe; synthetic examples only. -->
 # Reject an orphan child and preserve existing rows
 
-Exercise the parent/child invariant with a deliberately missing parent. Explicitly enable SQLite enforcement before assuming that a foreign-key declaration protects an insert.
+Test the parent/child invariant with an intentionally missing parent. Explicitly enable SQLite enforcement before assuming that a foreign-key declaration protects an insert.
 
 Source: [SP_CreateTables.sql, line 75](../../SP_CreateTables.sql#L75). The source stores a nine-row JOIN glossary and defines a parent/child relation; it does not execute these JOIN exercises.
 
