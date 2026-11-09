@@ -1,7 +1,7 @@
 <!-- (kommiBo) Source-reviewed SQL learning recipe; synthetic examples only. -->
 # Select a calendar interval with an exclusive upper bound
 
-Use greater-than-or-equal at the start and less-than at the next boundary. This includes all represented times in the day without guessing a last millisecond.
+Use greater-than-or-equal at the start and less-than at the next boundary. This covers all represented times in the day without guessing a final millisecond.
 
 Source: [SP_CreateTables.sql, line 25](../../SP_CreateTables.sql#L25). The source stores a nine-row JOIN glossary and defines a parent/child relation; it does not execute these JOIN exercises.
 
