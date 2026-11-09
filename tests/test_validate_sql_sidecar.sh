@@ -6,10 +6,13 @@ set -euo pipefail
 readonly IMAGE='mcr.microsoft.com/mssql/server:2022-CU26-ubuntu-22.04@sha256:ba4c8329f48fb8f02e1416be6a930ebfd71268caee78aa985f3af4315e457c89'
 readonly CONTAINER="sql-py-join-sidecar-test-$$"
 readonly ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-readonly SNAPSHOT="$(mktemp -d)"
-export MSSQL_SA_PASSWORD="Aekr!7$(openssl rand -hex 24)"
+# (kommiBo) Fail before allocating a snapshot or starting external commands.
+MSSQL_SA_PASSWORD="Aekr!7$(openssl rand -hex 24)"
+export MSSQL_SA_PASSWORD
 export KOMMIBO_SQL_PASSWORD="$MSSQL_SA_PASSWORD"
 export SQLCMDPASSWORD="$MSSQL_SA_PASSWORD"
+SNAPSHOT="$(mktemp -d)"
+readonly SNAPSHOT
 trap 'docker rm --force "$CONTAINER" >/dev/null 2>&1 || true; rm -rf "$SNAPSHOT"' EXIT
 
 # Export tracked content, never the checkout .git directory or its credentials.
