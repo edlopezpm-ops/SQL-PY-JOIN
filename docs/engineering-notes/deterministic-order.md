@@ -1,7 +1,7 @@
 <!-- (kommiBo) Source-reviewed SQL learning recipe; synthetic examples only. -->
 # Use a unique tie-breaker for latest-row selection
 
-A SELECT without ORDER BY does not promise display order. Add a unique identity after the timestamp when top-one selection or pagination must be repeatable.
+A SELECT without ORDER BY does not guarantee display order. Add a unique identity after the timestamp when top-one selection or pagination must be reproducible.
 
 Source: [SP_CreateTables.sql, line 113](../../SP_CreateTables.sql#L113). The source stores a nine-row JOIN glossary and defines a parent/child relation; it does not execute these JOIN exercises.
 
