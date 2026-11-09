@@ -1,7 +1,7 @@
 <!-- (kommiBo) Source-reviewed SQL learning recipe; synthetic examples only. -->
 # Select one latest child for parents with a match
 
-Model the CROSS APPLY glossary entry as a correlated top-one selection. Order by timestamp and a unique identity to make ties deterministic, and omit parents that have no child.
+Represent the CROSS APPLY glossary entry as a correlated top-one selection. Order by timestamp and a unique identity to make ties deterministic, and exclude parents that have no child.
 
 Source: [SP_CreateTables.sql, line 108](../../SP_CreateTables.sql#L108). The source stores a nine-row JOIN glossary and defines a parent/child relation; it does not execute these JOIN exercises.
 

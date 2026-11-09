@@ -1,7 +1,7 @@
 <!-- (kommiBo) Source-reviewed SQL learning recipe; synthetic examples only. -->
 # Predict Cartesian-product size before CROSS JOIN
 
-A CROSS JOIN makes every combination. Predict its cardinality from the two inputs before interpreting it as a relationship or using it to generate a report grid.
+A CROSS JOIN produces every combination. Predict its cardinality from the two inputs before treating it as a relationship or using it to generate a report grid.
 
 Source: [SP_CreateTables.sql, line 106](../../SP_CreateTables.sql#L106). The source stores a nine-row JOIN glossary and defines a parent/child relation; it does not execute these JOIN exercises.
 
