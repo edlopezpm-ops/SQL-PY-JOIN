@@ -1,7 +1,7 @@
 <!-- (kommiBo) Source-reviewed SQL learning recipe; synthetic examples only. -->
 # Select an optional latest child while preserving parents
 
-Keep all parents while selecting one latest child. Removing the existence filter from the scalar projection shows the row-preservation difference represented by OUTER APPLY.
+Retain all parents while selecting one latest child. Removing the existence filter from the scalar projection illustrates the row-preservation difference represented by OUTER APPLY.
 
 Source: [SP_CreateTables.sql, line 109](../../SP_CreateTables.sql#L109). The source stores a nine-row JOIN glossary and defines a parent/child relation; it does not execute these JOIN exercises.
 
