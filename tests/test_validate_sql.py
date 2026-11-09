@@ -26,6 +26,9 @@ args = [arg.split("=", 1)[0] + "=<redacted>" if arg.startswith(("SQLCMDPASSWORD=
 event = {"kind": kind, "args": args, "stdin_sha256": hashlib.sha256(source).hexdigest(), "password_valid": password_valid}
 with open(os.environ["TRANSPORT_LOG"], "a") as output:
     output.write(json.dumps(event) + "\n")
+# (kommiBo) Bound failure probes before later filesystem effects.
+if kind == "docker" and args[0] == "run" and os.environ.get("FAIL_DOCKER_RUN") == "1":
+    sys.exit(29)
 if source and (os.environ.get("FAIL_SQL") == "1" or (os.environ.get("REQUIRE_GO") == "1" and not source.rstrip().endswith(b"GO"))):
     sys.exit(7)
 '''
@@ -53,11 +56,12 @@ class SqlTransportTests(unittest.TestCase):
         shutil.copyfile(ROOT / "SP_CreateTables.sql", self.root / "SP_CreateTables.sql")
         self.log = self.root / "calls.jsonl"
 
-    def execute(self, settings, trace=False):
+    # (kommiBo) Share the same isolated fixture harness across both entry points.
+    def execute(self, settings, trace=False, script=None):
         env = {key: value for key, value in os.environ.items() if not key.startswith("KOMMIBO_SQL_")}
         env.update(PATH=f"{self.bin}{os.pathsep}{env['PATH']}", TRANSPORT_LOG=str(self.log), **settings)
         result = subprocess.run(
-            ["bash", *(["-x"] if trace else []), str(self.script)],
+            ["bash", *(["-x"] if trace else []), str(script or self.script)],
             env=env, stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=15,
         )
         self.assertNotIn(FIXTURE_PASSWORD, result.stdout + result.stderr)
@@ -95,6 +99,29 @@ class SqlTransportTests(unittest.TestCase):
         self.assertTrue(events[0]["args"][-1].endswith("@sha256:ba4c8329f48fb8f02e1416be6a930ebfd71268caee78aa985f3af4315e457c89"))
         self.assertEqual(events[-1]["args"][:2], ["rm", "--force"])
         self.assertEqual(len([event for event in events if event["args"][0] == "exec"]), 8)
+
+    # (kommiBo) Setup failures must stop both entry points before external commands.
+    def test_setup_command_failures_stop_before_external_commands(self):
+        git = self.bin / "git"
+        git.write_text(MOCK)
+        git.chmod(0o755)
+        sidecar_script = self.root / "tests/test_validate_sql_sidecar.sh"
+        shutil.copyfile(ROOT / "tests/test_validate_sql_sidecar.sh", sidecar_script)
+        for command in ("openssl", "mktemp"):
+            failing_command = self.bin / command
+            failing_command.write_text("#!/usr/bin/env bash\nexit 23\n")
+            failing_command.chmod(0o755)
+            try:
+                for script in (self.script, sidecar_script):
+                    with self.subTest(command=command, script=script.name):
+                        self.log.unlink(missing_ok=True)
+                        # Prevent an unfixed script from reaching later filesystem writes.
+                        result, events = self.execute({"FAIL_DOCKER_RUN": "1"}, trace=True, script=script)
+                        self.assertEqual(result.returncode, 23)
+                        self.assertEqual(events, [])
+                        self.assertNotIn("PASS", result.stdout)
+            finally:
+                failing_command.unlink()
 
     def test_sidecar_failure_propagates_without_destroying_external_container(self):
         result, events = self.execute({

@@ -20,9 +20,13 @@ if [[ -n "${KOMMIBO_SQL_SERVER+x}" || -n "${KOMMIBO_SQL_PASSWORD+x}" ]]; then
   readonly SA_PASSWORD="$KOMMIBO_SQL_PASSWORD"
 else
   readonly MANAGES_CONTAINER=true
-  readonly SA_PASSWORD="Aekr!7$(openssl rand -hex 24)"
+  # (kommiBo) Preserve command failures before marking generated values readonly.
+  SA_PASSWORD="Aekr!7$(openssl rand -hex 24)"
+  readonly SA_PASSWORD
 fi
-readonly TEMP_DIR="$(mktemp -d)"
+# (kommiBo) A failed temporary-directory allocation must stop before transport.
+TEMP_DIR="$(mktemp -d)"
+readonly TEMP_DIR
 
 sql_exec() {
   if [[ "$MANAGES_CONTAINER" == true ]]; then
