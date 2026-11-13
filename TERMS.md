@@ -74,7 +74,7 @@ do not change the existing project's permissions or copyright ownership.
 
 ## License and ownership take precedence
 
-No root project license has been selected. Neither the learning goal nor public hosting grants a general license to redistribute the SQL script or other project material.
+The exact files listed in [LICENSE](LICENSE) are released under the standard [MIT License](LICENSES/MIT.txt). These notes do not add use, approval, commercial-purpose or website-acceptance conditions to that grant. External database software and other unlisted material retain their applicable terms.
 
 These notes describe operating boundaries, not a click-through agreement or a new
 software license. Existing license grants and applicable rights take precedence over
