@@ -10,10 +10,12 @@ executes mutations and can acquire locks; use an authorized disposable database.
 Do not attach connection secrets, production dumps or operational records. Report
 security-sensitive issues through [SECURITY.md](SECURITY.md).
 
-No general project license has been selected. Discuss permission before redistributing
-or adapting the script beyond GitHub's platform permissions, and submit only material
-you are authorized to provide. This guide grants no new rights or contributor agreement;
-see the [licensing inventory](docs/licensing.md) and [use boundaries](TERMS.md).
+Files expressly listed in [LICENSE](LICENSE) are available under the standard
+[MIT License](LICENSES/MIT.txt), without a separate approval or website-terms
+condition. External runtimes and unlisted material retain their own terms. Submit
+only material you are authorized to provide; this guide creates no additional
+contributor agreement. See the [licensing inventory](docs/licensing.md) and
+[use boundaries](TERMS.md).
 
 ## Run the appropriate validation
 
