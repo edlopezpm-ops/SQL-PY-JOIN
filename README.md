@@ -68,7 +68,11 @@ Este es un proyecto de practica y evolucion tecnica. El codigo se mantendra simp
 
 ## Licencia
 
-No se ha seleccionado una licencia general para el proyecto. Los términos de GitHub permiten verlo y hacer fork; una reutilización más amplia requiere el permiso correspondiente. El aviso separado de procedencia AEKR no licencia el script SQL.
+El script SQL, validadores, ejemplos, configuración de workflow y notas técnicas
+listados expresamente en [LICENSE](LICENSE) están disponibles bajo la licencia
+[MIT](LICENSES/MIT.txt), incluidos sus permisos de uso comercial. El alcance no
+incluye los runtimes externos ni material no listado; el aviso de procedencia AEKR
+conserva su alcance separado.
 
 ## Gobernanza
 

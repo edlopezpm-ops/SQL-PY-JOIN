@@ -1,0 +1,76 @@
+# License scope — SQL-PY-JOIN
+
+<!-- (kommiBo) Owner-authorized licensing decision, 2026-11-12. -->
+
+Copyright (c) 2026 Ed Lopez
+
+## MIT grant for the listed material
+
+The original project material at the exact repository-relative paths below is released
+under the standard [MIT License](LICENSES/MIT.txt). This file is the authoritative scope
+index; each entry is a literal path, not a directory wildcard. The complete MIT text
+provides the grant, conditions and disclaimer. Reuse of covered material does not require
+separate approval, a non-commercial purpose or agreement to the AEKR website terms.
+
+- `.github/workflows/validation.yml`
+- `SP_CreateTables.sql`
+- `docs/engineering-notes/README.md`
+- `docs/engineering-notes/cross-apply-equivalent.md`
+- `docs/engineering-notes/cross-join-cardinality.md`
+- `docs/engineering-notes/deterministic-order.md`
+- `docs/engineering-notes/foreign-key-negative-case.md`
+- `docs/engineering-notes/full-outer-projection.md`
+- `docs/engineering-notes/group-counts.md`
+- `docs/engineering-notes/half-open-date-range.md`
+- `docs/engineering-notes/inner-join.md`
+- `docs/engineering-notes/left-join.md`
+- `docs/engineering-notes/outer-apply-equivalent.md`
+- `docs/engineering-notes/outer-join-filter-placement.md`
+- `docs/engineering-notes/parameterized-values.md`
+- `docs/engineering-notes/parent-resolution-cardinality.md`
+- `docs/engineering-notes/right-join-by-reversal.md`
+- `docs/engineering-notes/self-join-pairs.md`
+- `docs/engineering-notes/transaction-rollback.md`
+- `docs/engineering-notes/transactional-reload.md`
+- `docs/examples/_fixture.py`
+- `docs/examples/cross-apply-equivalent.py`
+- `docs/examples/cross-join-cardinality.py`
+- `docs/examples/deterministic-order.py`
+- `docs/examples/foreign-key-negative-case.py`
+- `docs/examples/full-outer-projection.py`
+- `docs/examples/group-counts.py`
+- `docs/examples/half-open-date-range.py`
+- `docs/examples/inner-join.py`
+- `docs/examples/left-join.py`
+- `docs/examples/outer-apply-equivalent.py`
+- `docs/examples/outer-join-filter-placement.py`
+- `docs/examples/parameterized-values.py`
+- `docs/examples/parent-resolution-cardinality.py`
+- `docs/examples/right-join-by-reversal.py`
+- `docs/examples/self-join-pairs.py`
+- `docs/examples/transaction-rollback.py`
+- `docs/examples/transactional-reload.py`
+- `tests/test_validate_sql.py`
+- `tests/test_validate_sql_sidecar.sh`
+- `tests/validate_sql.sh`
+
+## Other material and existing rights
+
+This grant covers the listed project material, not the entire repository or the software
+packages it imports, downloads or invokes. Unlisted material receives no new permission
+from this decision. Any existing separate license or written permission continues to
+apply according to its own scope; rights already granted for earlier copies are preserved.
+Applicable mandatory rights and GitHub's platform permissions are not restricted here.
+
+The external SQL Server image, `sqlcmd`, Docker, Bash and Python retain their own
+licenses and terms. They are not licensed by this file, and a validator's EULA flag
+does not create redistribution rights. No new grant is made for unlisted `assets/`.
+
+The existing `assets/AEKR-BANNER-LICENSE.txt` retains its separate scope and notices.
+No trademark, logo, endorsement or personal-data permission is created by this grant.
+Preserve the applicable notices for any separately licensed material you distribute.
+
+For the component inventory and decision history, see [docs/licensing.md](docs/licensing.md).
+That document explains this index and does not expand its list. Adding a new file to the
+repository does not automatically add it to this MIT grant; update the index explicitly
+when the rights holder elects to include it.
